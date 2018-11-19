@@ -19,10 +19,13 @@ namespace DAMNova
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            MessageBox.Show(GetFileType(2));
+            foreach (string item in StringSplit("F1.F2.S2.I1.T4.T2.T5.T1"))
+            {
+                MessageBox.Show(FetchValue(item));
+            }
         }
 
-        private void FetchValues(string[] input)
+        private string FetchValue(string input)
         {
             int i = 1;
             string tempstring = "";
@@ -34,11 +37,24 @@ namespace DAMNova
 
             switch (input[0])
             {
-                case "S":
-                    GetString(int.Parse(tempstring));
+                case 'S':
+                    tempstring = GetString(int.Parse(tempstring));
                     break;
-
+                case 'F':
+                    tempstring = GetFloat(int.Parse(tempstring)).ToString();
+                    break;
+                case 'D':
+                    tempstring = GetDateTime(int.Parse(tempstring)).ToString();
+                    break;
+                case 'I':
+                    tempstring = GetInt(int.Parse(tempstring)).ToString();
+                    break;
+                case 'T':
+                    tempstring = GetFileType(int.Parse(tempstring)).ToString();
+                    break;
             }
+
+            return tempstring;
 
 
         }
@@ -52,10 +68,11 @@ namespace DAMNova
 
         public string GetFileType(int counter)
         {
+            File_Types ans;
 
             using (var ctx = new Context())
             {
-                var ans = ctx.FileTypes.Where(Value => Value.ID == counter).SingleOrDefault();
+                ans = ctx.FileTypes.Where(Value => Value.ID == counter).SingleOrDefault();
                 return ans.FieldName;
             }
 
