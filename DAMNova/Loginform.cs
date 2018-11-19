@@ -126,5 +126,14 @@ namespace DAMNova
 
             return ans.Content;
         }
+
+        private void logInButton_Click(object sender, EventArgs e)
+        {
+            if (userNameBox.Text == "Test" && passwordBox.Text == "Test")
+            {
+                Home newform = new Home();
+                newform.Show();
+            }
+        }
     }
 }
