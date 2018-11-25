@@ -9,7 +9,7 @@ using System.DirectoryServices.AccountManagement;
 
 namespace DAMNova
 {
-    class ADconnect
+    public class ADconnect
     {
         
     }
