@@ -47,5 +47,28 @@ namespace DAMNova
         {
 
         }
+
+        private void EnterButton_Click(object sender, EventArgs e)
+        {
+            PrincipalContext ctx = new PrincipalContext(ContextType.Domain, "NOVA.test");
+
+            UserPrincipal user = UserPrincipal.FindByIdentity(ctx, "SomeUserName");
+
+            GroupPrincipal group = GroupPrincipal.FindByIdentity(ctx, "Admin");
+
+            if (user != null)
+            {
+                ValidateCredentials("NOVA.test", UserNameBox.Text, PasswordBox.Text);
+
+                if (user.IsMemberOf(group))
+                {
+                    // login as admin
+                }
+                else
+                {
+                    // login as user
+                }
+            }
+        }
     }
 }
