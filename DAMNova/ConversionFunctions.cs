@@ -18,6 +18,7 @@ namespace DAMNova
                 tempstring += input[i];
                 i++;
             }
+            
 
             switch (input[0])
             {

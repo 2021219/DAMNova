@@ -29,19 +29,5 @@ namespace DAMNova
             Home homepage = new Home();
             homepage.Show();
         }
-
-        
-
-       
-
-        
-
-       
-
-       
-
-        
-
-        
+      }
     }
-}
