@@ -1,6 +1,6 @@
 ﻿namespace DAMNova
 {
-    partial class LogIn
+    partial class Form1
     {
         /// <summary>
         /// Required designer variable.
@@ -101,8 +101,8 @@
             this.Controls.Add(this.logInLabel);
             this.Controls.Add(this.passwordBox);
             this.Controls.Add(this.userNameBox);
-            this.Name = "LogIn";
-            this.Text = "Log In";
+            this.Name = "Form1";
+            this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
