@@ -57,6 +57,7 @@
   <ItemGroup>
     <Compile Include="ADconnect.cs" />
     <Compile Include="Context.cs" />
+    <Compile Include="ConversionFunctions.cs" />
     <Compile Include="DateTimes.cs" />
     <Compile Include="File Types.cs" />
     <Compile Include="File.cs" />
@@ -67,11 +68,21 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Home.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Home.Designer.cs">
+      <DependentUpon>Home.cs</DependentUpon>
+    </Compile>
     <Compile Include="Ints.cs" />
     <Compile Include="Login.cs" />
     <Compile Include="Migrations\201811182304495_SetupDatabase.cs" />
     <Compile Include="Migrations\201811182304495_SetupDatabase.Designer.cs">
       <DependentUpon>201811182304495_SetupDatabase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811252129180_filenameadded.cs" />
+    <Compile Include="Migrations\201811252129180_filenameadded.Designer.cs">
+      <DependentUpon>201811252129180_filenameadded.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
@@ -81,8 +92,14 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Home.resx">
+      <DependentUpon>Home.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201811182304495_SetupDatabase.resx">
       <DependentUpon>201811182304495_SetupDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811252129180_filenameadded.resx">
+      <DependentUpon>201811252129180_filenameadded.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
