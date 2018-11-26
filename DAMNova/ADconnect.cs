@@ -11,6 +11,7 @@ namespace DAMNova
 {
     public class ADconnect
     {
-        
+        DirectoryEntry dir = new DirectoryEntry("LDAP://NOVA.test");
+
     }
 }
