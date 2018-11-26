@@ -31,6 +31,10 @@
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.homeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fileUploadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.folderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.textFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.searchBox = new System.Windows.Forms.TextBox();
             this.searchButton = new System.Windows.Forms.Button();
@@ -38,10 +42,6 @@
             this.fileTree = new System.Windows.Forms.TreeView();
             this.explorerTree = new System.Windows.Forms.TreeView();
             this.metaDataBox = new System.Windows.Forms.TextBox();
-            this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.fileUploadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.folderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.textFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -71,6 +71,34 @@
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
             // 
+            // newToolStripMenuItem
+            // 
+            this.newToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileUploadToolStripMenuItem,
+            this.folderToolStripMenuItem,
+            this.textFileToolStripMenuItem});
+            this.newToolStripMenuItem.Name = "newToolStripMenuItem";
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(98, 22);
+            this.newToolStripMenuItem.Text = "New";
+            // 
+            // fileUploadToolStripMenuItem
+            // 
+            this.fileUploadToolStripMenuItem.Name = "fileUploadToolStripMenuItem";
+            this.fileUploadToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.fileUploadToolStripMenuItem.Text = "File Upload";
+            // 
+            // folderToolStripMenuItem
+            // 
+            this.folderToolStripMenuItem.Name = "folderToolStripMenuItem";
+            this.folderToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.folderToolStripMenuItem.Text = "Folder";
+            // 
+            // textFileToolStripMenuItem
+            // 
+            this.textFileToolStripMenuItem.Name = "textFileToolStripMenuItem";
+            this.textFileToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.textFileToolStripMenuItem.Text = "Text  File";
+            // 
             // optionsToolStripMenuItem
             // 
             this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
@@ -93,6 +121,7 @@
             this.searchButton.TabIndex = 2;
             this.searchButton.Text = "Search";
             this.searchButton.UseVisualStyleBackColor = true;
+            this.searchButton.Click += new System.EventHandler(this.searchButton_Click);
             // 
             // logOutButton
             // 
@@ -116,6 +145,7 @@
             this.explorerTree.Name = "explorerTree";
             this.explorerTree.Size = new System.Drawing.Size(471, 345);
             this.explorerTree.TabIndex = 5;
+            this.explorerTree.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.explorerTree_AfterSelect);
             // 
             // metaDataBox
             // 
@@ -124,34 +154,6 @@
             this.metaDataBox.Name = "metaDataBox";
             this.metaDataBox.Size = new System.Drawing.Size(133, 345);
             this.metaDataBox.TabIndex = 6;
-            // 
-            // newToolStripMenuItem
-            // 
-            this.newToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileUploadToolStripMenuItem,
-            this.folderToolStripMenuItem,
-            this.textFileToolStripMenuItem});
-            this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.newToolStripMenuItem.Text = "New";
-            // 
-            // fileUploadToolStripMenuItem
-            // 
-            this.fileUploadToolStripMenuItem.Name = "fileUploadToolStripMenuItem";
-            this.fileUploadToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.fileUploadToolStripMenuItem.Text = "File Upload";
-            // 
-            // folderToolStripMenuItem
-            // 
-            this.folderToolStripMenuItem.Name = "folderToolStripMenuItem";
-            this.folderToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.folderToolStripMenuItem.Text = "Folder";
-            // 
-            // textFileToolStripMenuItem
-            // 
-            this.textFileToolStripMenuItem.Name = "textFileToolStripMenuItem";
-            this.textFileToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.textFileToolStripMenuItem.Text = "Text  File";
             // 
             // Home
             // 
@@ -168,6 +170,7 @@
             this.MainMenuStrip = this.menuStrip;
             this.Name = "Home";
             this.Text = "Home";
+            this.Load += new System.EventHandler(this.Home_Load);
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
             this.ResumeLayout(false);
