@@ -12,7 +12,7 @@ namespace DAMNova
     {
         [Key]
         public int ID { get; set; }
-        public string FileName { get; set; }
+
         public string Code { get; set; }
         public string Fields { get; set; }
         public int AccessLevel { get; set; }
