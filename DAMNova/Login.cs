@@ -22,5 +22,10 @@ namespace DAMNova
             Home testform = new Home();
             testform.Show();
         }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
