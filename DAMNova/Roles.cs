@@ -16,6 +16,6 @@ namespace DAMNova
         public int AccessLevel { get; set; }
 
         //public List<int> LoginID { get; set; }
-        public List<Login> Logins { get; set; }
+        public List<LogIn> Logins { get; set; }
     }
 }

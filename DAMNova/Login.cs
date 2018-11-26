@@ -1,25 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace DAMNova
 {
-    public class Login
+    public partial class LogIn : Form
     {
-        [Key]
-        public int UserID { get; set; }
-        public string UserName { get; set; }
-        public string Password { get; set; }
-        public bool Active { get; set; }
-        public bool Deleted { get; set; }
+        public LogIn()
+        {
+            InitializeComponent();
+        }
 
-        //public List<int> FileID { get; set; }
-        public List<File> Files { get; set; }
-        //public int RoleID { get; set; }
-        public Roles Role { get; set; }
+        private void LogIn_Load(object sender, EventArgs e)
+        {
+            Home testform = new Home();
+            testform.Show();
+        }
     }
 }

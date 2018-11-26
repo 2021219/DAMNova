@@ -10,7 +10,7 @@ namespace DAMNova
     public class Context : DbContext
     {
 
-        public DbSet<Login> Login { get; set; }
+        public DbSet<LogIn> Login { get; set; }
         public DbSet<Roles> Roles { get; set; }
         public DbSet<File_Types> FileTypes { get; set; }
         public DbSet<Ints> Ints { get; set; }

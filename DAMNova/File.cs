@@ -20,7 +20,7 @@ namespace DAMNova
         public DateTime LastModifiedOn { get; set; }
         public bool Deleted { get; set; }
         //public int LoginID { get; set; }
-        public Login Login { get; set; }
+        public LogIn Login { get; set; }
     }
 
 }
