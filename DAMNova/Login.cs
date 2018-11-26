@@ -19,22 +19,13 @@ namespace DAMNova
 
         private void LogIn_Load(object sender, EventArgs e)
         {
-            
+            Home testform = new Home();
+            testform.Show();
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
-        }
-
-        private void EnterButton_Click(object sender, EventArgs e)
-        {
-            if(UserNameBox.Text == "user1" && PasswordBox.Text == "pass")
-            {
-                Home testform = new Home();
-                testform.Show();
-                this.Hide();
-            }
         }
     }
 }
