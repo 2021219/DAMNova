@@ -78,25 +78,26 @@
             this.folderToolStripMenuItem,
             this.textFileToolStripMenuItem});
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(98, 22);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.newToolStripMenuItem.Text = "New";
             // 
             // fileUploadToolStripMenuItem
             // 
             this.fileUploadToolStripMenuItem.Name = "fileUploadToolStripMenuItem";
-            this.fileUploadToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.fileUploadToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.fileUploadToolStripMenuItem.Text = "File Upload";
+            this.fileUploadToolStripMenuItem.Click += new System.EventHandler(this.fileUploadToolStripMenuItem_Click);
             // 
             // folderToolStripMenuItem
             // 
             this.folderToolStripMenuItem.Name = "folderToolStripMenuItem";
-            this.folderToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.folderToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.folderToolStripMenuItem.Text = "Folder";
             // 
             // textFileToolStripMenuItem
             // 
             this.textFileToolStripMenuItem.Name = "textFileToolStripMenuItem";
-            this.textFileToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.textFileToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.textFileToolStripMenuItem.Text = "Text  File";
             // 
             // optionsToolStripMenuItem
@@ -131,6 +132,7 @@
             this.logOutButton.TabIndex = 3;
             this.logOutButton.Text = "Log out";
             this.logOutButton.UseVisualStyleBackColor = true;
+            this.logOutButton.Click += new System.EventHandler(this.logOutButton_Click);
             // 
             // fileTree
             // 
