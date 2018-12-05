@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.DirectoryServices;
 using System.DirectoryServices.AccountManagement;
 using System.Drawing;
 using System.Linq;
@@ -43,10 +44,42 @@ namespace DAMNova
             }
         }
 
+        public bool IsInGroup(string domain, string username, string groupname)
+        {
+            bool result = false;
+            using (var context = new PrincipalContext(ContextType.Domain, domain))
+            {
+                var user = UserPrincipal.FindByIdentity(context, username);
+                if (user != null)
+                {
+                    var group = GroupPrincipal.FindByIdentity(context, groupname);
+                    if (group != null && user.IsMemberOf(group))
+                        result = true;
+                }
+            }
+            return result;
+        }
+
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
         }
+        
+        // the below code is just a test for now and cannot be used yet
+        //public void AddToGroup(string userDn, string groupDn)
+        //{
+        //    try
+        //    {
+        //        DirectoryEntry dirEntry = new DirectoryEntry("LDAP://NOVA.test" + groupDn);
+        //        dirEntry.Invoke("Add", new object[] { userDn });
+        //        dirEntry.CommitChanges();
+        //        dirEntry.Close();
+        //    }
+        //    catch (DirectoryServicesCOMException E)
+        //    {
+        //        E.Message.ToString();
+        //    }
+        //}
 
         private void EnterButton_Click(object sender, EventArgs e)
         {
