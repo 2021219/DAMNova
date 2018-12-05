@@ -36,48 +36,55 @@
             // 
             // UserNameBox
             // 
-            this.UserNameBox.Location = new System.Drawing.Point(358, 160);
+            this.UserNameBox.Location = new System.Drawing.Point(477, 197);
+            this.UserNameBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.UserNameBox.Name = "UserNameBox";
-            this.UserNameBox.Size = new System.Drawing.Size(100, 20);
+            this.UserNameBox.Size = new System.Drawing.Size(132, 22);
             this.UserNameBox.TabIndex = 0;
             this.UserNameBox.Text = "User Name";
             this.UserNameBox.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // PasswordBox
             // 
-            this.PasswordBox.Location = new System.Drawing.Point(358, 186);
+            this.PasswordBox.Location = new System.Drawing.Point(477, 229);
+            this.PasswordBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.PasswordBox.Name = "PasswordBox";
-            this.PasswordBox.Size = new System.Drawing.Size(100, 20);
+            this.PasswordBox.PasswordChar = '*';
+            this.PasswordBox.Size = new System.Drawing.Size(132, 22);
             this.PasswordBox.TabIndex = 1;
             this.PasswordBox.Text = "Password";
             // 
             // EnterButton
             // 
-            this.EnterButton.Location = new System.Drawing.Point(358, 212);
+            this.EnterButton.Location = new System.Drawing.Point(477, 261);
+            this.EnterButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.EnterButton.Name = "EnterButton";
-            this.EnterButton.Size = new System.Drawing.Size(75, 23);
+            this.EnterButton.Size = new System.Drawing.Size(100, 28);
             this.EnterButton.TabIndex = 2;
             this.EnterButton.Text = "Enter";
             this.EnterButton.UseVisualStyleBackColor = true;
+            this.EnterButton.Click += new System.EventHandler(this.EnterButton_Click);
             // 
             // LogInLabel
             // 
             this.LogInLabel.AutoSize = true;
-            this.LogInLabel.Location = new System.Drawing.Point(355, 114);
+            this.LogInLabel.Location = new System.Drawing.Point(473, 140);
+            this.LogInLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LogInLabel.Name = "LogInLabel";
-            this.LogInLabel.Size = new System.Drawing.Size(37, 13);
+            this.LogInLabel.Size = new System.Drawing.Size(47, 17);
             this.LogInLabel.TabIndex = 3;
             this.LogInLabel.Text = "Log In";
             // 
             // LogIn
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1067, 554);
             this.Controls.Add(this.LogInLabel);
             this.Controls.Add(this.EnterButton);
             this.Controls.Add(this.PasswordBox);
             this.Controls.Add(this.UserNameBox);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "LogIn";
             this.Text = "LogIn";
             this.Load += new System.EventHandler(this.LogIn_Load);
