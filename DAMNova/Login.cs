@@ -25,40 +25,35 @@ namespace DAMNova
             testform.Show();
         }
 
-        public bool ValidateCredentials(string domain, string username, string password)
+
+        private bool Authenticate(string userName, string password, string domain)
         {
-            bool valid = false;
-            using (var context = new PrincipalContext(ContextType.Domain, domain))
+            bool authentic = false;
+            try
             {
-                valid = context.ValidateCredentials(username, password);
+                DirectoryEntry entry = new DirectoryEntry("LDAP://NOVA.test" + domain, userName, password);
+                object nativeObject = entry.NativeObject;
+                authentic = true;
             }
-            if (valid == true)
-            {
-                return valid;
-            }
-            else
-            {
-                MessageBox.Show("Error", "Account does not exist");
-                Application.Exit();
-                return valid;
-            }
+            catch (DirectoryServicesCOMException) { }
+            return authentic;
         }
 
-        public bool IsInGroup(string domain, string username, string groupname)
-        {
-            bool result = false;
-            using (var context = new PrincipalContext(ContextType.Domain, domain))
-            {
-                var user = UserPrincipal.FindByIdentity(context, username);
-                if (user != null)
-                {
-                    var group = GroupPrincipal.FindByIdentity(context, groupname);
-                    if (group != null && user.IsMemberOf(group))
-                        result = true;
-                }
-            }
-            return result;
-        }
+        //public bool IsInGroup(string domain, string username, string groupname)
+        //{
+        //    bool result = false;
+        //    using (var context = new PrincipalContext(ContextType.Domain, domain))
+        //    {
+        //        var user = UserPrincipal.FindByIdentity(context, username);
+        //        if (user != null)
+        //        {
+        //            var group = GroupPrincipal.FindByIdentity(context, groupname);
+        //            if (group != null && user.IsMemberOf(group))
+        //                result = true;
+        //        }
+        //    }
+        //    return result;
+        //}
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
@@ -83,24 +78,30 @@ namespace DAMNova
 
         private void EnterButton_Click(object sender, EventArgs e)
         {
-            PrincipalContext ctx = new PrincipalContext(ContextType.Domain, "NOVA.test");
+            PrincipalContext ctx = new PrincipalContext(ContextType.Domain, "LDAP://NOVA.test");
 
-            UserPrincipal user = UserPrincipal.FindByIdentity(ctx, "SomeUserName");
-
-            GroupPrincipal group = GroupPrincipal.FindByIdentity(ctx, "Admin");
-
-            if (user != null)
+            if (UserNameBox.Text != null || PasswordBox.Text != null)
             {
-                ValidateCredentials("NOVA.test", UserNameBox.Text, PasswordBox.Text);
+                UserPrincipal user = UserPrincipal.FindByIdentity(ctx, UserNameBox.Text);
+                GroupPrincipal group = GroupPrincipal.FindByIdentity(ctx, "Admin");
 
-                if (user.IsMemberOf(group))
+                if (user != null)
                 {
-                    // login as admin
+                    Authenticate(UserNameBox.Text, PasswordBox.Text, "NOVA.test");
+
+                    if (user.IsMemberOf(group))
+                    {
+                        // login as admin
+                    }
+                    else
+                    {
+                        // login as user
+                    }
                 }
-                else
-                {
-                    // login as user
-                }
+            }
+            else
+            {
+                MessageBox.Show("Please enter all fields","", MessageBoxButtons.OK, MessageBoxIcon.Hand);
             }
         }
     }
