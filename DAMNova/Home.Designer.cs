@@ -39,9 +39,10 @@
             this.searchBox = new System.Windows.Forms.TextBox();
             this.searchButton = new System.Windows.Forms.Button();
             this.logOutButton = new System.Windows.Forms.Button();
-            this.fileTree = new System.Windows.Forms.TreeView();
-            this.explorerTree = new System.Windows.Forms.TreeView();
-            this.metaDataBox = new System.Windows.Forms.TextBox();
+            this.ExplorerList = new System.Windows.Forms.ListView();
+            this.ID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.FileName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.DateModified = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.menuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -132,37 +133,42 @@
             this.logOutButton.Text = "Log out";
             this.logOutButton.UseVisualStyleBackColor = true;
             // 
-            // fileTree
+            // ExplorerList
             // 
-            this.fileTree.Location = new System.Drawing.Point(12, 93);
-            this.fileTree.Name = "fileTree";
-            this.fileTree.Size = new System.Drawing.Size(160, 345);
-            this.fileTree.TabIndex = 4;
+            this.ExplorerList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ExplorerList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.ID,
+            this.FileName,
+            this.DateModified});
+            this.ExplorerList.FullRowSelect = true;
+            this.ExplorerList.GridLines = true;
+            this.ExplorerList.Location = new System.Drawing.Point(12, 93);
+            this.ExplorerList.Name = "ExplorerList";
+            this.ExplorerList.Size = new System.Drawing.Size(776, 345);
+            this.ExplorerList.TabIndex = 7;
+            this.ExplorerList.UseCompatibleStateImageBehavior = false;
+            this.ExplorerList.View = System.Windows.Forms.View.Details;
             // 
-            // explorerTree
+            // ID
             // 
-            this.explorerTree.Location = new System.Drawing.Point(178, 93);
-            this.explorerTree.Name = "explorerTree";
-            this.explorerTree.Size = new System.Drawing.Size(471, 345);
-            this.explorerTree.TabIndex = 5;
-            this.explorerTree.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.explorerTree_AfterSelect);
+            this.ID.Text = "ID";
             // 
-            // metaDataBox
+            // FileName
             // 
-            this.metaDataBox.Location = new System.Drawing.Point(655, 93);
-            this.metaDataBox.Multiline = true;
-            this.metaDataBox.Name = "metaDataBox";
-            this.metaDataBox.Size = new System.Drawing.Size(133, 345);
-            this.metaDataBox.TabIndex = 6;
+            this.FileName.Text = "File Name";
+            // 
+            // DateModified
+            // 
+            this.DateModified.Text = "Last Modified";
             // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.metaDataBox);
-            this.Controls.Add(this.explorerTree);
-            this.Controls.Add(this.fileTree);
+            this.Controls.Add(this.ExplorerList);
             this.Controls.Add(this.logOutButton);
             this.Controls.Add(this.searchButton);
             this.Controls.Add(this.searchBox);
@@ -187,12 +193,13 @@
         private System.Windows.Forms.TextBox searchBox;
         private System.Windows.Forms.Button searchButton;
         private System.Windows.Forms.Button logOutButton;
-        private System.Windows.Forms.TreeView fileTree;
-        private System.Windows.Forms.TreeView explorerTree;
-        private System.Windows.Forms.TextBox metaDataBox;
         private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem fileUploadToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem folderToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem textFileToolStripMenuItem;
+        private System.Windows.Forms.ListView ExplorerList;
+        private System.Windows.Forms.ColumnHeader ID;
+        private System.Windows.Forms.ColumnHeader FileName;
+        private System.Windows.Forms.ColumnHeader DateModified;
     }
 }
