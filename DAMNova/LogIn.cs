@@ -95,9 +95,7 @@ namespace DAMNova
 
                 if (user.IsMemberOf(group))
                 {
-                    Home home = new Home();
-                    home.Show();
-                    Close();
+                    // login as admin
                 }
                 else
                 {
