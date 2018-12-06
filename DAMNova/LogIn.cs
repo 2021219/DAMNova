@@ -25,23 +25,18 @@ namespace DAMNova
             testform.Show();
         }
 
-        public bool ValidateCredentials(string domain, string username, string password)
+
+        private bool Authenticate(string userName, string password, string domain)
         {
-            bool valid = false;
-            using (var context = new PrincipalContext(ContextType.Domain, domain))
+            bool authentic = false;
+            try
             {
-                valid = context.ValidateCredentials(username, password);
+                DirectoryEntry entry = new DirectoryEntry("LDAP://NOVA.test" + domain, userName, password);
+                object nativeObject = entry.NativeObject;
+                authentic = true;
             }
-            if (valid == true)
-            {
-                return valid;
-            }
-            else
-            {
-                MessageBox.Show("Error", "Account does not exist");
-                Application.Exit();
-                return valid;
-            }
+            catch (DirectoryServicesCOMException) { }
+            return authentic;
         }
 
         //public bool IsInGroup(string domain, string username, string groupname)
@@ -96,7 +91,9 @@ namespace DAMNova
 
                     if (user.IsMemberOf(group))
                     {
-                        // login as admin
+                        Home home = new Home();
+                        home.Show();
+                        Close();
                     }
                     else
                     {
