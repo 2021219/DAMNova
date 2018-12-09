@@ -65,10 +65,13 @@ namespace DAMNova
             ConversionFunctions temp = new ConversionFunctions();
             using (var ctx = new Context())
             {
-                int tempint = int.Parse(ExplorerList.SelectedItems[0].Text);
+                if (ExplorerList.SelectedItems != null)
+                {
+                    int tempint = int.Parse(ExplorerList.SelectedItems[0].Text);
 
-                File tempfile = ctx.File.Where(a => a.ID == tempint).FirstOrDefault();
-                temp.StringToFile(tempfile.LiterallyFile, tbpassword.Text, tempfile.FileName);
+                    File tempfile = ctx.File.Where(a => a.ID == tempint).FirstOrDefault();
+                    temp.StringToFile(tempfile.LiterallyFile, tbpassword.Text, tempfile.FileName);
+                }
             }
         }
 

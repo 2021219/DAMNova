@@ -462,12 +462,12 @@ namespace DAMNova
 
                 if (category != null)
                 {
-                    if (SearchValue != "")
+                    if (SearchValue != "Search")
                     {
                         foreach (File item in ctx.File)
                         {
                             if (item.FileName == SearchValue || tempstringlist.Any(item.Fields.Contains) || tempstringlist.Any(item.Code.Contains)
-                                                             || item.ID.ToString() == SearchValue || item.FileType == category.ID)
+                                                             || item.ID.ToString() == SearchValue && item.FileType == category.ID)
                             {
                                 if (item.Deleted == deleted)
                                 {
@@ -495,7 +495,7 @@ namespace DAMNova
                 }
                 else
                 {
-                    if (SearchValue != "")
+                    if (SearchValue != "Search")
                     {
                         foreach (File item in ctx.File)
                         {
