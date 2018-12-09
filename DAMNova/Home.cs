@@ -36,28 +36,25 @@ namespace DAMNova
         private void searchButton_Click(object sender, EventArgs e)
         {
             ConversionFunctions Temp = new ConversionFunctions();
-            Temp.Search(searchBox.Text, ExplorerList, chbsearchdeleted.Checked, (File_Types)cbSearchCategory.SelectedItem);
+            Temp.Search(searchBox.Text, ExplorerList, chbsearchdeleted.Checked, (File_Types)cbSearchCategory.SelectedItem, dtpSearch);
 
-            ToggleButtons(btnDelete, btnOpen);
+            DisableButtons();
         }
 
         private void ExplorerList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ToggleButtons(btnDelete, btnOpen);
+            EnableButtons();
         }
 
-        private void ToggleButtons(Button buttonopen, Button buttondelete)
+        private void DisableButtons()
         {
-            if (ExplorerList.SelectedItems != null)
-            {
-                buttonopen.Enabled = true;
-                buttondelete.Enabled = true;
-            }
-            else
-            {
-                buttonopen.Enabled = false;
-                buttondelete.Enabled = false;
-            }
+            btnDelete.Enabled = false;
+            btnOpen.Enabled = false;
+        }
+        private void EnableButtons()
+        {
+            btnDelete.Enabled = true;
+            btnOpen.Enabled = true;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -90,9 +87,9 @@ namespace DAMNova
 
                 ctx.SaveChanges();
                 
-                temp.Search(searchBox.Text, ExplorerList, chbsearchdeleted.Checked, (File_Types)cbSearchCategory.SelectedItem);
+                temp.Search(searchBox.Text, ExplorerList, chbsearchdeleted.Checked, (File_Types)cbSearchCategory.SelectedItem,dtpSearch);
 
-                ToggleButtons(btnDelete, btnOpen);
+                DisableButtons();
             }
         }
 
@@ -105,6 +102,14 @@ namespace DAMNova
         {
             AddFile FileOpen = new AddFile();
             FileOpen.Show();
+        }
+
+        private void searchBox_Leave(object sender, EventArgs e)
+        {
+            if (searchBox.Text == "")
+            {
+                searchBox.Text = "Search";
+            }
         }
     }
 }

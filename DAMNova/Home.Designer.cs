@@ -51,6 +51,7 @@
             this.chbsearchdeleted = new System.Windows.Forms.CheckBox();
             this.DateAdded = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Locked = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.dtpSearch = new System.Windows.Forms.DateTimePicker();
             this.menuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -123,6 +124,7 @@
             this.searchBox.Size = new System.Drawing.Size(160, 20);
             this.searchBox.TabIndex = 1;
             this.searchBox.Text = "Search";
+            this.searchBox.Leave += new System.EventHandler(this.searchBox_Leave);
             // 
             // searchButton
             // 
@@ -178,15 +180,15 @@
             // 
             // tbpassword
             // 
-            this.tbpassword.Location = new System.Drawing.Point(660, 27);
+            this.tbpassword.Location = new System.Drawing.Point(713, 27);
             this.tbpassword.Name = "tbpassword";
-            this.tbpassword.Size = new System.Drawing.Size(128, 20);
+            this.tbpassword.Size = new System.Drawing.Size(75, 20);
             this.tbpassword.TabIndex = 8;
             // 
             // btnOpen
             // 
             this.btnOpen.Enabled = false;
-            this.btnOpen.Location = new System.Drawing.Point(339, 56);
+            this.btnOpen.Location = new System.Drawing.Point(480, 28);
             this.btnOpen.Name = "btnOpen";
             this.btnOpen.Size = new System.Drawing.Size(75, 23);
             this.btnOpen.TabIndex = 9;
@@ -197,7 +199,7 @@
             // btnDelete
             // 
             this.btnDelete.Enabled = false;
-            this.btnDelete.Location = new System.Drawing.Point(420, 56);
+            this.btnDelete.Location = new System.Drawing.Point(480, 56);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(75, 23);
             this.btnDelete.TabIndex = 10;
@@ -208,7 +210,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(600, 30);
+            this.label1.Location = new System.Drawing.Point(654, 30);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(53, 13);
             this.label1.TabIndex = 11;
@@ -226,7 +228,7 @@
             // chbsearchdeleted
             // 
             this.chbsearchdeleted.AutoSize = true;
-            this.chbsearchdeleted.Location = new System.Drawing.Point(178, 32);
+            this.chbsearchdeleted.Location = new System.Drawing.Point(284, 58);
             this.chbsearchdeleted.Name = "chbsearchdeleted";
             this.chbsearchdeleted.Size = new System.Drawing.Size(100, 17);
             this.chbsearchdeleted.TabIndex = 13;
@@ -241,11 +243,20 @@
             // 
             this.Locked.Text = "Locked";
             // 
+            // dtpSearch
+            // 
+            this.dtpSearch.Location = new System.Drawing.Point(178, 30);
+            this.dtpSearch.Name = "dtpSearch";
+            this.dtpSearch.ShowCheckBox = true;
+            this.dtpSearch.Size = new System.Drawing.Size(260, 20);
+            this.dtpSearch.TabIndex = 14;
+            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.dtpSearch);
             this.Controls.Add(this.chbsearchdeleted);
             this.Controls.Add(this.cbSearchCategory);
             this.Controls.Add(this.label1);
@@ -293,5 +304,6 @@
         private System.Windows.Forms.CheckBox chbsearchdeleted;
         private System.Windows.Forms.ColumnHeader DateAdded;
         private System.Windows.Forms.ColumnHeader Locked;
+        private System.Windows.Forms.DateTimePicker dtpSearch;
     }
 }

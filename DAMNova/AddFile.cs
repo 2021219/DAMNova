@@ -33,6 +33,7 @@ namespace DAMNova
             if (cbFileName.Text != "")
             {
                 RemoveFields();
+                btnAdd.Enabled = true;
                 File_Types tempitem = (File_Types)cbFileType.Items[cbFileType.SelectedIndex];
                 GenerateInputs(tempitem.Fields);
                 cbFileType.Tag = tempitem.Fields;
@@ -178,7 +179,6 @@ namespace DAMNova
 
                                 this.Controls.Add(NewLabelD);
                                 this.Controls.Add(NewTextBoxD);
-                                MessageBox.Show((string)NewTextBoxD.Tag);
                                 break;
                         }
 
@@ -332,9 +332,18 @@ namespace DAMNova
                 {
                     MessageBox.Show("Please fill out all required information");
                 }
-                
 
-                
+                AddFileDialogue filedialogue = new AddFileDialogue();
+
+                if (filedialogue.ShowDialog() == DialogResult.OK)
+                {
+                    RemoveFields();
+                    cbFileName.Text = "";
+                    cbFileType.Text = "";
+                    btnAdd.Enabled = false;
+                }
+                else this.Close();
+
 
             }
         }

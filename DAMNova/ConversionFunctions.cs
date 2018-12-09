@@ -21,8 +21,6 @@ namespace DAMNova
 
         public void StringToFile(string input, string Password, string FileName)
         {
-            MessageBox.Show(input.Length.ToString());
-
             string tempstring = input;
 
             if (Password != "")
@@ -418,7 +416,7 @@ namespace DAMNova
 
 
 
-        public List<File> SearchFiles(string SearchValue, bool deleted, File_Types category)
+        public List<File> SearchFiles(string SearchValue, bool deleted, File_Types category, DateTimePicker searchdatetime)
         {
             using (var ctx = new Context())
             {
@@ -471,7 +469,21 @@ namespace DAMNova
                             {
                                 if (item.Deleted == deleted)
                                 {
-                                    tempfilelist.Add(item);
+                                    if (searchdatetime.Checked == false)
+                                    {
+                                        tempfilelist.Add(item);
+                                    }
+                                    else
+                                    {
+                                        if (item.LastModifiedOn.Date == searchdatetime.Value.Date)
+                                        {
+                                            tempfilelist.Add(item);
+                                        }
+                                        else
+                                        { }
+
+                                    }
+
                                 }
                             }
                         }
@@ -486,7 +498,20 @@ namespace DAMNova
                             {
                                 if (item.Deleted == deleted)
                                 {
-                                    tempfilelist.Add(item);
+                                    if (searchdatetime.Checked == false)
+                                    {
+                                        tempfilelist.Add(item);
+                                    }
+                                    else
+                                    {
+                                        if (item.LastModifiedOn.Date == searchdatetime.Value.Date)
+                                        {
+                                            tempfilelist.Add(item);
+                                        }
+                                        else
+                                        { }
+
+                                    }
                                 }
                             }
                         }
@@ -504,7 +529,20 @@ namespace DAMNova
                             {
                                 if (item.Deleted == deleted)
                                 {
-                                    tempfilelist.Add(item);
+                                    if (searchdatetime.Checked == false)
+                                    {
+                                        tempfilelist.Add(item);
+                                    }
+                                    else
+                                    {
+                                        if (item.LastModifiedOn.Date == searchdatetime.Value.Date)
+                                        {
+                                            tempfilelist.Add(item);
+                                        }
+                                        else
+                                        { }
+
+                                    }
                                 }
                             }
                         }
@@ -516,7 +554,20 @@ namespace DAMNova
                         {
                             if (item.Deleted == deleted)
                             {
-                                tempfilelist.Add(item);
+                                if (searchdatetime.Checked == false)
+                                {
+                                    tempfilelist.Add(item);
+                                }
+                                else
+                                {
+                                    if (item.LastModifiedOn.Date == searchdatetime.Value.Date)
+                                    {
+                                        tempfilelist.Add(item);
+                                    }
+                                    else
+                                    { }
+
+                                }
                             }
                         }
                         return tempfilelist;
@@ -530,11 +581,11 @@ namespace DAMNova
 
 
 
-        public void Search(string SearchValue, ListView OutputListView, bool deleted, File_Types category)
+        public void Search(string SearchValue, ListView OutputListView, bool deleted, File_Types category, DateTimePicker searchdatetime)
         {
             OutputListView.Items.Clear();
 
-            List<File> templist = SearchFiles(SearchValue, deleted, category);
+            List<File> templist = SearchFiles(SearchValue, deleted, category, searchdatetime);
             List<string> tempstringlist = new List<string>();
 
             //Generate list of fields
