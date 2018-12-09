@@ -20,6 +20,9 @@ namespace DAMNova
         private void Form1_Load(object sender, EventArgs e)
         {
             ConversionFunctions temp = new ConversionFunctions();
+
+            AddFile testadd = new AddFile();
+            testadd.Show();
             
             Home homepage = new Home();
             homepage.Show();

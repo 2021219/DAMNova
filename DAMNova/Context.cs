@@ -18,6 +18,7 @@ namespace DAMNova
         public DbSet<Floats> Floats { get; set; }
         public DbSet<DateTimes> DateTimes { get; set; }
         public DbSet<File> File { get; set; }
+        public DbSet<FieldName> FieldName { get; set; }
 
 
     }

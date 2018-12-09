@@ -13,5 +13,12 @@ namespace DAMNova
         public int ID { get; set; }
         public string FieldName { get; set; }
         public bool Deleted { get; set; }
+        public string Fields { get; set; }
+
+        //
+        public override string ToString()
+        {
+            return FieldName;
+        }
     }
 }

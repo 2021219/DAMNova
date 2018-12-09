@@ -53,9 +53,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddFile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddFile.Designer.cs">
+      <DependentUpon>AddFile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddFileFunctions.cs" />
     <Compile Include="Context.cs" />
     <Compile Include="ConversionFunctions.cs" />
     <Compile Include="DateTimes.cs" />
+    <Compile Include="FieldName.cs" />
     <Compile Include="File Types.cs" />
     <Compile Include="File.cs" />
     <Compile Include="Floats.cs" />
@@ -81,11 +89,26 @@
     <Compile Include="Migrations\201811252129180_filenameadded.Designer.cs">
       <DependentUpon>201811252129180_filenameadded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812062042278_FieldTable.cs" />
+    <Compile Include="Migrations\201812062042278_FieldTable.Designer.cs">
+      <DependentUpon>201812062042278_FieldTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812062125187_FieldTableDataTypeAdded.cs" />
+    <Compile Include="Migrations\201812062125187_FieldTableDataTypeAdded.Designer.cs">
+      <DependentUpon>201812062125187_FieldTableDataTypeAdded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812091219393_backupstorage.cs" />
+    <Compile Include="Migrations\201812091219393_backupstorage.Designer.cs">
+      <DependentUpon>201812091219393_backupstorage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Roles.cs" />
     <Compile Include="Strings.cs" />
+    <EmbeddedResource Include="AddFile.resx">
+      <DependentUpon>AddFile.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -97,6 +120,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201811252129180_filenameadded.resx">
       <DependentUpon>201811252129180_filenameadded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812062042278_FieldTable.resx">
+      <DependentUpon>201812062042278_FieldTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812062125187_FieldTableDataTypeAdded.resx">
+      <DependentUpon>201812062125187_FieldTableDataTypeAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812091219393_backupstorage.resx">
+      <DependentUpon>201812091219393_backupstorage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -42,7 +42,15 @@
             this.ExplorerList = new System.Windows.Forms.ListView();
             this.ID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.FileName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.DateModified = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.FileType = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.tbpassword = new System.Windows.Forms.TextBox();
+            this.btnOpen = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cbSearchCategory = new System.Windows.Forms.ComboBox();
+            this.chbsearchdeleted = new System.Windows.Forms.CheckBox();
+            this.DateAdded = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Locked = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.menuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -79,25 +87,27 @@
             this.folderToolStripMenuItem,
             this.textFileToolStripMenuItem});
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(98, 22);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.newToolStripMenuItem.Text = "New";
+            this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
             // fileUploadToolStripMenuItem
             // 
             this.fileUploadToolStripMenuItem.Name = "fileUploadToolStripMenuItem";
-            this.fileUploadToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.fileUploadToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.fileUploadToolStripMenuItem.Text = "File Upload";
+            this.fileUploadToolStripMenuItem.Click += new System.EventHandler(this.fileUploadToolStripMenuItem_Click);
             // 
             // folderToolStripMenuItem
             // 
             this.folderToolStripMenuItem.Name = "folderToolStripMenuItem";
-            this.folderToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.folderToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.folderToolStripMenuItem.Text = "Folder";
             // 
             // textFileToolStripMenuItem
             // 
             this.textFileToolStripMenuItem.Name = "textFileToolStripMenuItem";
-            this.textFileToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.textFileToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.textFileToolStripMenuItem.Text = "Text  File";
             // 
             // optionsToolStripMenuItem
@@ -108,7 +118,7 @@
             // 
             // searchBox
             // 
-            this.searchBox.Location = new System.Drawing.Point(12, 53);
+            this.searchBox.Location = new System.Drawing.Point(12, 30);
             this.searchBox.Name = "searchBox";
             this.searchBox.Size = new System.Drawing.Size(160, 20);
             this.searchBox.TabIndex = 1;
@@ -116,9 +126,9 @@
             // 
             // searchButton
             // 
-            this.searchButton.Location = new System.Drawing.Point(178, 51);
+            this.searchButton.Location = new System.Drawing.Point(178, 55);
             this.searchButton.Name = "searchButton";
-            this.searchButton.Size = new System.Drawing.Size(75, 23);
+            this.searchButton.Size = new System.Drawing.Size(100, 23);
             this.searchButton.TabIndex = 2;
             this.searchButton.Text = "Search";
             this.searchButton.UseVisualStyleBackColor = true;
@@ -141,7 +151,9 @@
             this.ExplorerList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.ID,
             this.FileName,
-            this.DateModified});
+            this.FileType,
+            this.DateAdded,
+            this.Locked});
             this.ExplorerList.FullRowSelect = true;
             this.ExplorerList.GridLines = true;
             this.ExplorerList.Location = new System.Drawing.Point(12, 93);
@@ -150,6 +162,7 @@
             this.ExplorerList.TabIndex = 7;
             this.ExplorerList.UseCompatibleStateImageBehavior = false;
             this.ExplorerList.View = System.Windows.Forms.View.Details;
+            this.ExplorerList.SelectedIndexChanged += new System.EventHandler(this.ExplorerList_SelectedIndexChanged);
             // 
             // ID
             // 
@@ -159,15 +172,86 @@
             // 
             this.FileName.Text = "File Name";
             // 
-            // DateModified
+            // FileType
             // 
-            this.DateModified.Text = "Last Modified";
+            this.FileType.Text = "File Category";
+            // 
+            // tbpassword
+            // 
+            this.tbpassword.Location = new System.Drawing.Point(660, 27);
+            this.tbpassword.Name = "tbpassword";
+            this.tbpassword.Size = new System.Drawing.Size(128, 20);
+            this.tbpassword.TabIndex = 8;
+            // 
+            // btnOpen
+            // 
+            this.btnOpen.Enabled = false;
+            this.btnOpen.Location = new System.Drawing.Point(339, 56);
+            this.btnOpen.Name = "btnOpen";
+            this.btnOpen.Size = new System.Drawing.Size(75, 23);
+            this.btnOpen.TabIndex = 9;
+            this.btnOpen.Text = "Open";
+            this.btnOpen.UseVisualStyleBackColor = true;
+            this.btnOpen.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Enabled = false;
+            this.btnDelete.Location = new System.Drawing.Point(420, 56);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(75, 23);
+            this.btnDelete.TabIndex = 10;
+            this.btnDelete.Text = "Delete";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(600, 30);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(53, 13);
+            this.label1.TabIndex = 11;
+            this.label1.Text = "Password";
+            // 
+            // cbSearchCategory
+            // 
+            this.cbSearchCategory.FormattingEnabled = true;
+            this.cbSearchCategory.Location = new System.Drawing.Point(12, 56);
+            this.cbSearchCategory.Name = "cbSearchCategory";
+            this.cbSearchCategory.Size = new System.Drawing.Size(160, 21);
+            this.cbSearchCategory.TabIndex = 12;
+            this.cbSearchCategory.Text = "Search Category:";
+            // 
+            // chbsearchdeleted
+            // 
+            this.chbsearchdeleted.AutoSize = true;
+            this.chbsearchdeleted.Location = new System.Drawing.Point(178, 32);
+            this.chbsearchdeleted.Name = "chbsearchdeleted";
+            this.chbsearchdeleted.Size = new System.Drawing.Size(100, 17);
+            this.chbsearchdeleted.TabIndex = 13;
+            this.chbsearchdeleted.Text = "Search Deleted";
+            this.chbsearchdeleted.UseVisualStyleBackColor = true;
+            // 
+            // DateAdded
+            // 
+            this.DateAdded.Text = "Date Added";
+            // 
+            // Locked
+            // 
+            this.Locked.Text = "Locked";
             // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.chbsearchdeleted);
+            this.Controls.Add(this.cbSearchCategory);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.btnDelete);
+            this.Controls.Add(this.btnOpen);
+            this.Controls.Add(this.tbpassword);
             this.Controls.Add(this.ExplorerList);
             this.Controls.Add(this.logOutButton);
             this.Controls.Add(this.searchButton);
@@ -200,6 +284,14 @@
         private System.Windows.Forms.ListView ExplorerList;
         private System.Windows.Forms.ColumnHeader ID;
         private System.Windows.Forms.ColumnHeader FileName;
-        private System.Windows.Forms.ColumnHeader DateModified;
+        private System.Windows.Forms.ColumnHeader FileType;
+        private System.Windows.Forms.TextBox tbpassword;
+        private System.Windows.Forms.Button btnOpen;
+        private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox cbSearchCategory;
+        private System.Windows.Forms.CheckBox chbsearchdeleted;
+        private System.Windows.Forms.ColumnHeader DateAdded;
+        private System.Windows.Forms.ColumnHeader Locked;
     }
 }

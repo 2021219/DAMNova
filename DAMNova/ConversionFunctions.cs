@@ -10,37 +10,86 @@ namespace DAMNova
 {
     public class ConversionFunctions
     {
+        public string FileToString(string FilePath, string Password)
+        {
+            string filecontent = Convert.ToBase64String(System.IO.File.ReadAllBytes(FilePath));
+
+            filecontent = Password + filecontent;
+
+            return filecontent;
+        }
+
+        public void StringToFile(string input, string Password, string FileName)
+        {
+            MessageBox.Show(input.Length.ToString());
+
+            string tempstring = input;
+
+            if (Password != "")
+            {
+                tempstring = "";
+                int count = Password.Length;
+                while (count < input.Length)
+                {
+                    tempstring += input[count];
+                    count++;
+                }
+            }
+
+            System.IO.File.WriteAllBytes("c:\\TempFolder\\" + FileName, Convert.FromBase64String(tempstring));
+
+            System.Diagnostics.Process.Start("c:\\TempFolder\\" + FileName);
+
+        }
 
         public string FetchValue(string input)
         {
-            int i = 1;
-            string tempstring = "";
-            while (i < input.Length)
-            {
-                tempstring += input[i];
-                i++;
-            }
 
-            switch (input[0])
+            //Strip off the leading char e.g F15 ->  15
+            string tempstring = input.Substring(1, input.Length - 1);
+
+            if (tempstring != "")
             {
-                case 'S':
-                    tempstring = GetString(int.Parse(tempstring));
-                    break;
-                case 'F':
-                    tempstring = GetFloat(int.Parse(tempstring)).ToString();
-                    break;
-                case 'D':
-                    tempstring = GetDateTime(int.Parse(tempstring)).ToString();
-                    break;
-                case 'I':
-                    tempstring = GetInt(int.Parse(tempstring)).ToString();
-                    break;
-                case 'T':
-                    tempstring = GetFileType(int.Parse(tempstring)).ToString();
-                    break;
+                switch (input[0])
+                {
+                    case 'S':
+                        tempstring = GetString(int.Parse(tempstring));
+                        break;
+                    case 'F':
+                        tempstring = GetFloat(int.Parse(tempstring)).ToString();
+                        break;
+                    case 'D':
+                        tempstring = GetDateTime(int.Parse(tempstring)).ToString();
+                        break;
+                    case 'I':
+                        tempstring = GetInt(int.Parse(tempstring)).ToString();
+                        break;
+                    case 'T':
+                        tempstring = GetFileType(int.Parse(tempstring)).ToString();
+                        break;
+                    case 'N':
+                        tempstring = GetFieldName(int.Parse(tempstring)).ToString();
+                        break;
+
+                    default:
+                        throw new Exception($"FetchValue failed with invalid character [{input[0]}]");
+
+                }
             }
 
             return tempstring;
+        }
+
+        public string GetFieldName(int counter)
+        {
+            FieldName ans;
+
+            using (var ctx = new Context())
+            {
+                ans = ctx.FieldName.Where(Value => Value.ID == counter).SingleOrDefault();
+            }
+
+            return ans.Content;
         }
 
         public string[] StringSplit(string input)
@@ -349,7 +398,9 @@ namespace DAMNova
 
             OutputList.Columns.Add("ID", "ID", 40, HorizontalAlignment.Left, 0);
             OutputList.Columns.Add("FileName", "FileName", 100, HorizontalAlignment.Left, 0);
+            OutputList.Columns.Add("Category", "Category", 100, HorizontalAlignment.Left, 0);
             OutputList.Columns.Add("DateModified", "Date Modified", 150, HorizontalAlignment.Left, 0);
+            OutputList.Columns.Add("Locked", "Locked", 60, HorizontalAlignment.Left, 0);
 
             foreach (string i in item)
             {
@@ -367,7 +418,7 @@ namespace DAMNova
 
 
 
-        public List<File> SearchFiles(string SearchValue)
+        public List<File> SearchFiles(string SearchValue, bool deleted, File_Types category)
         {
             using (var ctx = new Context())
             {
@@ -409,20 +460,68 @@ namespace DAMNova
                     }
                 }
 
-
-
-                foreach (File item in ctx.File)
+                if (category != null)
                 {
-                    if (item.FileName == SearchValue || tempstringlist.Any(item.Fields.Contains) || tempstringlist.Any(item.Code.Contains)
-                                                     || item.ID.ToString() == SearchValue)
+                    if (SearchValue != "")
                     {
-                        if (item.Deleted == false)
+                        foreach (File item in ctx.File)
                         {
-                            tempfilelist.Add(item);
+                            if (item.FileName == SearchValue || tempstringlist.Any(item.Fields.Contains) || tempstringlist.Any(item.Code.Contains)
+                                                             || item.ID.ToString() == SearchValue || item.FileType == category.ID)
+                            {
+                                if (item.Deleted == deleted)
+                                {
+                                    tempfilelist.Add(item);
+                                }
+                            }
                         }
+                        return tempfilelist;
+                    }
+                    else
+                    {
+
+                        foreach (File item in ctx.File)
+                        {
+                            if (item.FileType == category.ID)
+                            {
+                                if (item.Deleted == deleted)
+                                {
+                                    tempfilelist.Add(item);
+                                }
+                            }
+                        }
+                        return tempfilelist;
                     }
                 }
-                return tempfilelist;
+                else
+                {
+                    if (SearchValue != "")
+                    {
+                        foreach (File item in ctx.File)
+                        {
+                            if (item.FileName == SearchValue || tempstringlist.Any(item.Fields.Contains) || tempstringlist.Any(item.Code.Contains)
+                                                             || item.ID.ToString() == SearchValue)
+                            {
+                                if (item.Deleted == deleted)
+                                {
+                                    tempfilelist.Add(item);
+                                }
+                            }
+                        }
+                        return tempfilelist;
+                    }
+                    else
+                    {
+                        foreach (File item in ctx.File)
+                        {
+                            if (item.Deleted == deleted)
+                            {
+                                tempfilelist.Add(item);
+                            }
+                        }
+                        return tempfilelist;
+                    }
+                }
             }
         }
 
@@ -431,12 +530,11 @@ namespace DAMNova
 
 
 
-
-        public void Search(string SearchValue, ListView OutputListView)
+        public void Search(string SearchValue, ListView OutputListView, bool deleted, File_Types category)
         {
             OutputListView.Items.Clear();
 
-            List<File> templist = SearchFiles(SearchValue);
+            List<File> templist = SearchFiles(SearchValue, deleted, category);
             List<string> tempstringlist = new List<string>();
 
             //Generate list of fields
@@ -493,13 +591,23 @@ namespace DAMNova
                 }
                 //sets ID, Name & DateModified 
 
-                templistitem.Text = item.ID.ToString();
-                ListViewItem.ListViewSubItem tempitemprop = new ListViewItem.ListViewSubItem();
-                ListViewItem.ListViewSubItem tempitemprop2 = new ListViewItem.ListViewSubItem();
-                tempitemprop.Text = item.FileName;
-                templistitem.SubItems.Add(tempitemprop);
-                tempitemprop2.Text = item.LastModifiedOn.ToString();
-                templistitem.SubItems.Add(tempitemprop2);
+                using (var ctx = new Context())
+                {
+
+                    templistitem.Text = item.ID.ToString();
+                    ListViewItem.ListViewSubItem tempitemprop = new ListViewItem.ListViewSubItem();
+                    ListViewItem.ListViewSubItem tempitemprop2 = new ListViewItem.ListViewSubItem();
+                    ListViewItem.ListViewSubItem tempitemprop3 = new ListViewItem.ListViewSubItem();
+                    ListViewItem.ListViewSubItem tempitemprop4 = new ListViewItem.ListViewSubItem();
+                    tempitemprop.Text = item.FileName;
+                    templistitem.SubItems.Add(tempitemprop);
+                    tempitemprop2.Text = ctx.FileTypes.Where(a => a.ID == item.FileType).FirstOrDefault().FieldName;
+                    templistitem.SubItems.Add(tempitemprop2);
+                    tempitemprop3.Text = item.LastModifiedOn.ToString();
+                    templistitem.SubItems.Add(tempitemprop3);
+                    tempitemprop4.Text = item.Locked.ToString();
+                    templistitem.SubItems.Add(tempitemprop4);
+                }
 
                 foreach (ColumnHeader item2 in OutputListView.Columns)
                 {
@@ -514,7 +622,7 @@ namespace DAMNova
                             found = true;
                         }
                     }
-                    if (found == false & item2.Name != "ID" & item2.Name != "DateModified" & item2.Name != "FileName")
+                    if (found == false & item2.Name != "ID" & item2.Name != "DateModified" & item2.Name != "FileName" & item2.Name != "Category" & item2.Name != "Locked")
                     {
                         ListViewItem.ListViewSubItem temp = new ListViewItem.ListViewSubItem();
                         temp.Text = "";

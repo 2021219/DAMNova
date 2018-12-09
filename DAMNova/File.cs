@@ -21,6 +21,9 @@ namespace DAMNova
         public bool Deleted { get; set; }
         //public int LoginID { get; set; }
         public Login Login { get; set; }
+        public int FileType { get; set; }
+        public bool Locked { get; set; }
+        public string LiterallyFile { get; set; }
     }
 
 }
